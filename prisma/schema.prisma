@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id                  Int      @id @default(autoincrement())
+  name                String?  @db.VarChar(100)
+  restaurant          String?  @db.VarChar(100)
+  id_emple_restaurant Decimal? @db.Decimal
+  Sale                Sale[]
+}
+
+model Sale {
+  id Int @id @default(autoincrement())
+
+  item_name        String?  @db.VarChar(100)
+  units_sold       Int?
+  selling_price    Decimal? @db.Decimal
+  quantity         Decimal? @db.Decimal
+  cost             Decimal? @db.Decimal
+  profitability    Decimal? @db.Decimal
+  cost_percentage  Decimal? @db.Decimal
+  sales_percentage Decimal? @db.Decimal
+  date             Decimal? @db.Decimal
+
+  empleoyee   Employee @relation(fields: [employee_id], references: [id])
+  employee_id Int
+}
