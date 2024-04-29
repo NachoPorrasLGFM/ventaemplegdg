@@ -53,11 +53,11 @@ export default function Home() {
       img: logoLobito,
       restaurant: [
         {
-          id: 10,
+          id: 1,
           name: "Madrid",
         },
         {
-          id: 9,
+          id: 2,
           name: "Marbella",
         },
         {
@@ -71,15 +71,15 @@ export default function Home() {
       img: logoLena,
       restaurant: [
         {
-          id: 1,
+          id: 10,
           name: "Madrid",
         },
         {
-          id: 2,
+          id: 9,
           name: "Marbella",
         },
         {
-          id: 3,
+          id: 8,
           name: "Dubai",
         },
       ],
@@ -90,15 +90,15 @@ export default function Home() {
       img: logoBibo,
       restaurant: [
         {
-          id: 7,
+          id: 4,
           name: "Madrid",
         },
         {
-          id: 6,
+          id: 5,
           name: "Marbella",
         },
         {
-          id: 8,
+          id: 3,
           name: "Tarifa",
         },
       ],
@@ -109,11 +109,11 @@ export default function Home() {
       img: logoSmoked,
       restaurant: [
         {
-          id: 10,
+          id: 13,
           name: "Madrid",
         },
         {
-          id: 9,
+          id: 12,
           name: "Dubai",
         },
       ],
@@ -124,11 +124,11 @@ export default function Home() {
       img: logoTragabuches,
       restaurant: [
         {
-          id: 5,
+          id: 6,
           name: "Madrid",
         },
         {
-          id: 4,
+          id: 7,
           name: "Marbella",
         },
       ],
