@@ -1,11 +1,24 @@
 import prisma from "@/app/utils/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export async function GET() {
+export async function GET(
+  request: Request,
+  { params }: { params: { restaurant: string } }
+) {
+  const { restaurant } = params;
+
   const employees = await prisma.employee.findMany({
     select: {
       id: true,
       name: true,
+      Restaurant: {
+        select: {
+          name: true,
+        },
+      },
+    },
+    where: {
+      restaurantId: parseInt(restaurant),
     },
   });
 
@@ -14,10 +27,6 @@ export async function GET() {
       quantity: true,
     },
     by: ["employee_id"],
-
-    where: {
-      date: 4,
-    },
   });
 
   const employeesWithTotalSales = employees.map((employee) => {
@@ -27,6 +36,7 @@ export async function GET() {
     const totalSales = employeeSales ? employeeSales._sum.quantity : 0;
     return { ...employee, totalSales };
   });
-
+  // Ordenar por nombre de empleado
+  employeesWithTotalSales.sort((a, b) => b.totalSales - a.totalSales);
   return Response.json(employeesWithTotalSales);
 }

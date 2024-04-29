@@ -10,9 +10,11 @@ datasource db {
 model Employee {
   id                  Int      @id @default(autoincrement())
   name                String?  @db.VarChar(100)
-  restaurant          String?  @db.VarChar(100)
   id_emple_restaurant Decimal? @db.Decimal
-  Sale                Sale[]
+  restaurantId Int @default(1)
+
+  Restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+  Sale       Sale[]
 }
 
 model Sale {
@@ -27,7 +29,16 @@ model Sale {
   cost_percentage  Decimal? @db.Decimal
   sales_percentage Decimal? @db.Decimal
   date             Decimal? @db.Decimal
+  employee_id      Int
+  restaurantId     Int @default(1)
 
-  empleoyee   Employee @relation(fields: [employee_id], references: [id])
-  employee_id Int
+  Restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+  empleoyee  Employee   @relation(fields: [employee_id], references: [id])
+}
+
+model Restaurant {
+  id       Int        @id @default(autoincrement()) 
+  name     String     @db.VarChar(100) @default("Leña Madrid")
+  Employee Employee[]
+  Sale     Sale[]
 }
