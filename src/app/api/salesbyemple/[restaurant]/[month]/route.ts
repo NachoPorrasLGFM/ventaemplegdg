@@ -38,6 +38,8 @@ export async function GET(
     return { ...employee, totalSales };
   });
   // Ordenar por nombre de empleado
-  employeesWithTotalSales.sort((a, b) => b.totalSales - a.totalSales);
+  employeesWithTotalSales.sort(
+    (a, b) => Number(b.totalSales) - Number(a.totalSales)
+  );
   return Response.json(employeesWithTotalSales);
 }
